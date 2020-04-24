@@ -197,7 +197,11 @@ var Form = Backbone.View.extend({
       _.each(keys, function(key) {
         var field = fields[key];
 
-        $container.append(field.editor.render().el);
+        if (field) {
+          $container.append(field.editor.render().el);
+        } else {
+          console.error('Field ' + key + ' not found in schema');
+        }
       });
     });
 
@@ -217,7 +221,12 @@ var Form = Backbone.View.extend({
       _.each(keys, function(key) {
         var field = fields[key];
 
-        $container.append(field.render().el);
+        if (field) {
+          $container.append(field.render().el);
+
+        } else {
+          console.error("Field " + key + " not found in schema");
+        }
       });
     });
 
